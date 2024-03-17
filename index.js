@@ -15,7 +15,7 @@ app.get("/users", (req, res) => {
 //   console.log("Home Page");
 });
 
-app.get("/api/users/:userId", (req, res) => {
+app.get("/users/:userId", (req, res) => {
   const userId = req.params.userId;
   const user = users.find((u) => u.id === userId);
   if (!user) {
@@ -24,7 +24,7 @@ app.get("/api/users/:userId", (req, res) => {
   res.json(user);
 });
 
-app.post("/api/users", (req, res) => {
+app.post("/users", (req, res) => {
   const { username, age, hobbies } = req.body;
   if (!username || !age) {
     return res.status(400).json({ error: "Username and age are required" });
@@ -34,7 +34,7 @@ app.post("/api/users", (req, res) => {
   res.status(201).json(newUser);
 });
 
-app.put("/api/users/:userId", (req, res) => {
+app.put("/users/:userId", (req, res) => {
   const userId = req.params.userId;
   const { username, age, hobbies } = req.body;
   const index = users.findIndex((u) => u.id === userId);
@@ -45,7 +45,7 @@ app.put("/api/users/:userId", (req, res) => {
   res.json(users[index]);
 });
 
-app.delete("/api/users/:userId", (req, res) => {
+app.delete("/users/:userId", (req, res) => {
   const userId = req.params.userId;
   users = users.filter((u) => u.id !== userId);
   res.sendStatus(204);
